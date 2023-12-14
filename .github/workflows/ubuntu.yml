@@ -24,8 +24,8 @@ jobs:
           while IFS= read -r project; do
             cd input/"$project"
 
-            cmake -B /build -S .
-            cmake --build /build
+            cmake -B build -S .
+            cmake --build build
 
             if [ $? -eq 0 ]; then
               # Custom test conditions - modify as needed
