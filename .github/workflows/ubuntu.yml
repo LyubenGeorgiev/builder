@@ -61,6 +61,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           author_name: Lyuben Georgiev
           author_email: koko6kata1@gmail.com
           message: 'Automatic sorting'
