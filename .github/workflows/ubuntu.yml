@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Install catch2
         run: |
@@ -58,10 +55,9 @@ jobs:
 
           set -e  # Enable automatic exit on error
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          github_token: ${{ secrets.PAT }}
+      - run: |
           author_name: Lyuben Georgiev
           author_email: koko6kata1@gmail.com
-          message: 'Automatic sorting'
+          git add .
+          git commit -m "generated"
+          git push
