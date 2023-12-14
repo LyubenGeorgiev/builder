@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Install catch2
         run: |
@@ -62,7 +62,6 @@ jobs:
         run: |
           git config --global user.email "koko6kata1@gmail.com"
           git config --global user.name "Lyuben Georgiev"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout "${GITHUB_REF:11}"
-          git commit -am "Automated filtering"
+          git add .
+          git commit -m "generated"
           git push
