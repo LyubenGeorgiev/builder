@@ -38,7 +38,7 @@ jobs:
               # Custom test conditions - modify as needed
               cd build/test
 
-              ctest
+              timeout 10 ctest
               
               if [ $? -eq 0 ]; then
                 mv ../../../"$project" ../../../../tested
