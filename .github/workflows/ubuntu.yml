@@ -56,8 +56,8 @@ jobs:
           set -e  # Enable automatic exit on error
 
       - run: |
-          author_name: Lyuben Georgiev
-          author_email: koko6kata1@gmail.com
+          git config user.name Lyuben Georgiev
+          git config user.email koko6kata1@gmail.com
           git add .
           git commit -m "generated"
           git push
