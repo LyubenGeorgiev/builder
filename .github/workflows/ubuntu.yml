@@ -25,6 +25,8 @@ jobs:
 
       - name: Process each project
         run: |
+          set +e  # Disable automatic exit on error
+
           while IFS= read -r project; do
             cd input/"$project"
 
@@ -52,7 +54,9 @@ jobs:
 
           done < projects.txt
 
-      - name: Commit
+          set -e  # Enable automatic exit on error
+
+      - name: Commit and push changes
         run: |
           git add --all
           git commit -m "sorted"
