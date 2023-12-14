@@ -1,0 +1,55 @@
+name: Build and Test C++ Code
+
+on:
+  push:
+    branches:
+      - main  # Modify this based on your branch names
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Find project folders
+        id: find-projects
+        run: |
+          mkdir -p built tested failed
+          find input/* -maxdepth 0 -type d -printf "%f\n" > projects.txt
+
+      - name: Process each project
+        run: |
+          while IFS= read -r project; do
+            cd "$project"
+
+            cmake -B /build -S .
+            cmake --build /build
+
+            if [ $? -eq 0 ]; then
+              # Custom test conditions - modify as needed
+              cd build/test
+
+              ctest
+              
+              if [ $? -eq 0 ]; then
+                mv ../../../"$project" ../tested
+              else
+                mv ../../../"$project" ../built
+              fi
+              cd ../../..
+            else
+              mv ../"$project" ../failed
+              cd ..
+            fi
+
+          cd ..
+
+          done < projects.txt
+
+      - name: Commit
+        run: |
+          git add --all
+          git commit -m "sorted"
+          git push
