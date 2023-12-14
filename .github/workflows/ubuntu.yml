@@ -47,7 +47,7 @@ jobs:
               fi
               cd ../../..
             else
-              mv ../"$project" ../failed
+              mv ../"$project" ../../failed
               cd ..
             fi
 
