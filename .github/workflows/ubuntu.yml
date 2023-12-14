@@ -13,6 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install catch2
+        run: |
+          sudo apt install catch2 -y
+
       - name: Find project folders
         id: find-projects
         run: |
