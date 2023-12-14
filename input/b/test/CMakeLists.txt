@@ -15,4 +15,6 @@ target_sources(
 )
 
 # Automatically register all tests
+include(CTest)
+include(Catch)
 catch_discover_tests(unit-tests)
