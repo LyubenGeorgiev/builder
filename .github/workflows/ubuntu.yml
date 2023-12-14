@@ -61,5 +61,5 @@ jobs:
           git config user.name Lyuben Georgiev
           git config user.email koko6kata1@gmail.com
           git add .
-          git commit -m "generated"
+          git commit -m "[skip ci]generated"
           git push
