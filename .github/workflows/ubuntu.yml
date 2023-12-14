@@ -21,9 +21,8 @@ jobs:
 
       - name: Process each project
         run: |
-          cd input
           while IFS= read -r project; do
-            cd "$project"
+            cd input/"$project"
 
             cmake -B /build -S .
             cmake --build /build
@@ -35,9 +34,9 @@ jobs:
               ctest
               
               if [ $? -eq 0 ]; then
-                mv ../../../"$project" ../tested
+                mv ../../../"$project" ../../../../tested
               else
-                mv ../../../"$project" ../built
+                mv ../../../"$project" ../../../../built
               fi
               cd ../../..
             else
