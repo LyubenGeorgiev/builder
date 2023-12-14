@@ -20,7 +20,6 @@ jobs:
       - name: Find project folders
         id: find-projects
         run: |
-          mkdir -p built tested failed
           find input/* -maxdepth 0 -type d -printf "%f\n" > projects.txt
 
       - name: Process each project
